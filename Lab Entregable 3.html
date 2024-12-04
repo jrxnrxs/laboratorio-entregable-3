@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - Lab 13</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .resultado {
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .input-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .input-container input, .input-container select {
+            padding: 10px;
+            margin: 5px;
+            font-size: 1em;
+        }
+        .input-container button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .input-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Calculadora Sencilla</h1>
+
+    <div class="input-container">
+        <input type="number" id="numero1" placeholder="Ingrese el primer número">
+        <input type="number" id="numero2" placeholder="Ingrese el segundo número">
+        <select id="operacion">
+            <option value="sumar">Sumar</option>
+            <option value="restar">Restar</option>
+            <option value="multiplicar">Multiplicar</option>
+            <option value="dividir">Dividir</option>
+        </select>
+        <button onclick="realizarCalculo()">Calcular</button>
+    </div>
+
+    <div id="resultado" class="resultado"></div>
+
+    <script>
+        // Funciones para las operaciones
+        function sumar(a, b) {
+            return a + b;
+        }
+
+        function restar(a, b) {
+            return a - b;
+        }
+
+        function multiplicar(a, b) {
+            return a * b;
+        }
+
+        function dividir(a, b) {
+            if (b === 0) {
+                return "No se puede dividir entre cero.";
+            }
+            return a / b;
+        }
+
+        // Función principal para las operaciones
+        function calculadora(numero1, numero2, operacion) {
+            switch (operacion) {
+                case 'sumar':
+                    return sumar(numero1, numero2);
+                case 'restar':
+                    return restar(numero1, numero2);
+                case 'multiplicar':
+                    return multiplicar(numero1, numero2);
+                case 'dividir':
+                    return dividir(numero1, numero2);
+                default:
+                    return "Operación no válida...";
+            }
+        }
+
+        // Función para realizar el cálculo y mostrar el resultado
+        function realizarCalculo() {
+            let numero1 = parseFloat(document.getElementById('numero1').value);
+            let numero2 = parseFloat(document.getElementById('numero2').value);
+            let operacion = document.getElementById('operacion').value;
+
+            let resultado = calculadora(numero1, numero2, operacion);
+
+            let resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `El resultado de ${operacion} entre ${numero1} y ${numero2} es: ${resultado}`;
+        }
+    </script>
+
+</body>
+</html>
